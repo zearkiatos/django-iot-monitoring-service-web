@@ -18,4 +18,4 @@ start_mqtt:
 	 nohup python3 IOTMonitoringServer/manage.py start_mqtt &
 
 start_control:
-	python3 IOTMonitoringServer/manage.py start_control &
+	python3 manage.py start_control &
