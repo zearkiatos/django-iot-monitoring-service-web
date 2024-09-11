@@ -5,7 +5,7 @@ activate:
 	else \
 		 echo "The folder environment doesn't exist"; \
         python3 -m venv venv; \
-        source ./env/bin/activate; \
+        source ./venv/bin/activate; \
 		 echo "The environment folder was created and the python 🐍 environment was activated"; \
 	fi
 install:
