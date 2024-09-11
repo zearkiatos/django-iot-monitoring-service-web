@@ -4,7 +4,7 @@ activate:
 		source venv/bin/activate; \
 	else \
 		 echo "The folder environment doesn't exist"; \
-        python -m venv venv; \
+        python3 -m venv venv; \
         source venv/bin/activate; \
 		 echo "The environment folder was created and the python 🐍 environment was activated"; \
 	fi
@@ -16,3 +16,6 @@ migrate:
 
 start_mqtt:
 	 nohup python3 IOTMonitoringServer/manage.py start_mqtt &
+
+start_control:
+	python3 IOTMonitoringServer/manage.py start_control &
