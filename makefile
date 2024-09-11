@@ -21,7 +21,7 @@ start_control:
 	python3 manage.py start_control &
 
 run_server:
-	nohup python3 manage.py runserver 0.0.0.0:80 &
+	nohup sudo python3 manage.py runserver 0.0.0.0:80 &
 
 run_create_user:
 	python3 manage.py createsuperuser
