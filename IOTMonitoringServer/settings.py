@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib import messages
+from .config import Config
+
+config = Config()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-bu+)8ft@9+qd*#e#f_s@wkyv2tmq+#!a^3j15h3kjk^jzksu0j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "ip.maquina.visualizador"]
+ALLOWED_HOSTS = ["localhost", config.ALLOWED_HOSTS]
 
 
 # Application definition
@@ -93,11 +96,11 @@ WSGI_APPLICATION = 'IOTMonitoringServer.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "iot_data",  # Nombre de la base de datos
-        "USER": "dbadmin",  # Nombre de usuario
-        "PASSWORD": "uniandesIOT1234*",  # Contraseña
-        "HOST": "ip.maquina.db",  # Dirección IP de la base de datos
-        "PORT": "",  # Puerto de la base de datos
+        "NAME": config.DATABASE_NAME,  # Nombre de la base de datos
+        "USER": config.DATABASE_USER,  # Nombre de usuario
+        "PASSWORD": config.DATABASE_PASSWORD,  # Contraseña
+        "HOST": config.DATABASE_HOST,  # Dirección IP de la base de datos
+        "PORT": config.DATABASE_PORT,  # Puerto de la base de datos
     }
 }
 
@@ -156,18 +159,18 @@ LOGOUT_REDIRECT_URL = '/login/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Dirección del bróker MQTT
-MQTT_HOST = "ip.maquina.mqtt"
+MQTT_HOST = config.MQTT_HOST
 
 # Puerto del bróker MQTT
 MQTT_PORT = 8082
 
 # Credenciales para el usuario suscriptor del bróker MQTT
-MQTT_USER = "admin"
-MQTT_PASSWORD = "admin"
+MQTT_USER = config.MQTT_USER
+MQTT_PASSWORD = config.MQTT_PASSWORD
 
 # Credenciales para el usuario publicador del bróker MQTT
-MQTT_USER_PUB = "admin2"
-MQTT_PASSWORD_PUB = "admin2"
+MQTT_USER_PUB = config.MQTT_USER_PUB
+MQTT_PASSWORD_PUB = config.MQTT_PASSWORD_PUB
 
 # Tópico a suscribir. "+/+/+/+/out" se suscribe únicamente a los
 # tópicos con forma <país>/<estado>/<ciudad>/<usuario>/out.
