@@ -19,3 +19,6 @@ start_mqtt:
 
 start_control:
 	python3 manage.py start_control &
+
+run_server:
+	nohup sudo python3 manage.py runserver 0.0.0.0:80 &
