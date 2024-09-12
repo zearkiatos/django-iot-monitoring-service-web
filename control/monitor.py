@@ -8,7 +8,7 @@ import schedule
 import time
 from django.conf import settings
 
-client = mqtt.Client(client_id=settings.MQTT_USER_PUB, protocol=mqtt.MQTTv311)
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2,settings.MQTT_USER_PUB)
 
 
 def analyze_data():
