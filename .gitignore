@@ -3,4 +3,3 @@ venv
 data
 .DS_Store
 nohup.out
-__pycache__

@@ -94,6 +94,7 @@ def setup_mqtt():
 
         client.username_pw_set(settings.MQTT_USER_PUB,
                                settings.MQTT_PASSWORD_PUB)
+        print(settings.MQTT_HOST)
         client.connect(settings.MQTT_HOST, settings.MQTT_PORT)
 
     except Exception as e:
