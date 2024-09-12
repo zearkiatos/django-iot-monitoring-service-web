@@ -174,7 +174,10 @@ MQTT_PASSWORD_PUB = config.MQTT_PASSWORD_PUB
 
 # Tópico a suscribir. "+/+/+/+/out" se suscribe únicamente a los
 # tópicos con forma <país>/<estado>/<ciudad>/<usuario>/out.
-TOPIC = "+/+/+/+/out"
+
+TOPIC = config.MEASUREMENT_TOPIC if type(config.MEASUREMENT_TOPIC) == str else ''
+
+print(TOPIC)
 
 # Opción para habilitar la transmisión de mensajes segura
 MQTT_USE_TLS = False

@@ -20,3 +20,4 @@ class Config:
     MQTT_PASSWORD=os.getenv('MQTT_PASSWORD')
     MQTT_USER_PUB=os.getenv('MQTT_USER_PUB')
     MQTT_PASSWORD_PUB=os.getenv('MQTT_PASSWORD_PUB')
+    MEASUREMENT_TOPIC=os.getenv('MEASUREMENT_TOPIC')
