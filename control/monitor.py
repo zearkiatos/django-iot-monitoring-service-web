@@ -4,11 +4,12 @@ from django.db.models import Avg
 from datetime import timedelta, datetime
 from receiver.models import Data, Measurement
 import paho.mqtt.client as mqtt
+import uuid
 import schedule
 import time
 from django.conf import settings
 
-client = mqtt.Client(settings.MQTT_USER_PUB)
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1,settings.MQTT_USER_PUB)
 
 
 def analyze_data():
@@ -63,7 +64,13 @@ def on_connect(client, userdata, flags, rc):
     '''
     Función que se ejecuta cuando se conecta al bróker.
     '''
-    print("Conectando al broker MQTT...", mqtt.connack_string(rc))
+    if rc == 0:
+        print("Conectando al broker MQTT...", mqtt.connack_string(rc))
+        print("Connected successfully")
+    else:
+        print(f"Failed to connect, return code {rc}")
+    print("Servicio de recepcion de datos iniciado")
+
 
 
 def on_disconnect(client: mqtt.Client, userdata, rc):
@@ -71,9 +78,13 @@ def on_disconnect(client: mqtt.Client, userdata, rc):
     Función que se ejecuta cuando se desconecta del broker.
     Intenta reconectar al bróker.
     '''
-    print("Desconectado con mensaje:" + str(mqtt.connack_string(rc)))
-    print("Reconectando...")
-    client.reconnect()
+    if rc != 0:
+        print("Desconectado con mensaje:" + str(mqtt.connack_string(rc)))
+        print(f"Unexpected disconnection. Return code: {rc}")
+        print("Reconectando...")
+        client.reconnect()
+    else:
+        print("Client disconnected normally")
 
 
 def setup_mqtt():
@@ -84,7 +95,7 @@ def setup_mqtt():
     print("Iniciando cliente MQTT...", settings.MQTT_HOST, settings.MQTT_PORT)
     global client
     try:
-        client = mqtt.Client(settings.MQTT_USER_PUB)
+        client = mqtt.Client(client_id=f"alert_{uuid.uuid4()}")
         client.on_connect = on_connect
         client.on_disconnect = on_disconnect
 
@@ -94,6 +105,7 @@ def setup_mqtt():
 
         client.username_pw_set(settings.MQTT_USER_PUB,
                                settings.MQTT_PASSWORD_PUB)
+        print(settings.MQTT_HOST)
         client.connect(settings.MQTT_HOST, settings.MQTT_PORT)
 
     except Exception as e:
