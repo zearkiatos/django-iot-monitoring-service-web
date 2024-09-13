@@ -34,7 +34,7 @@ def analyze_data():
                 'station__location__country__name')
     alerts = 0
     for item in aggregation:
-        alert = True
+        alert = False
 
         variable = item["measurement__name"]
         max_value = item["measurement__max_value"] or 0
