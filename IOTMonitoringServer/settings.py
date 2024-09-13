@@ -177,8 +177,6 @@ MQTT_PASSWORD_PUB = config.MQTT_PASSWORD_PUB
 
 TOPIC = config.MEASUREMENT_TOPIC if type(config.MEASUREMENT_TOPIC) == str else ''
 
-print(TOPIC)
-
 # Opción para habilitar la transmisión de mensajes segura
 MQTT_USE_TLS = False
 
