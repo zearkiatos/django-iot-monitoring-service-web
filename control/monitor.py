@@ -56,6 +56,13 @@ def analyze_data():
             client.publish(topic, message)
             alerts += 1
 
+        if variable=='luminosidad' and item["check_value"]>10:
+            message = f"ALERT {variable} supera valor de referencia"
+            topic = '{}/{}/{}/{}/in'.format(country, state, city, user)
+            print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
+            client.publish(topic, message)
+            alerts += 1
+
     print(len(aggregation), "dispositivos revisados")
     print(alerts, "alertas enviadas")
 
