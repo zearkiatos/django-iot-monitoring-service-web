@@ -6,3 +6,8 @@ This is a web application built 🏗️ with python 🐍 and Django this is a pr
 [![Django](https://img.shields.io/badge/django-44B78B?style=for-the-badge&logo=django&logoColor=white&labelColor=000000)]()
 [![PostgreSQL](https://img.shields.io/badge/postgresql-699eca?style=for-the-badge&logo=postgresql&logoColor=white&labelColor=000000)]()
 [![MQTT](https://img.shields.io/badge/mqtt-ff8800?style=for-the-badge&logo=mqtt&logoColor=white&labelColor=000000)]()
+
+# Video de evidencias
+
+https://github.com/user-attachments/assets/240eaecd-524f-49c4-98c2-feb31d512868
+
